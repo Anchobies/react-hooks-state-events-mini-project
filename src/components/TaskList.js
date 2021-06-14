@@ -1,9 +1,14 @@
 import React from "react";
+import Task from "./Task";
 
-function TaskList() {
+function TaskList({ currentFilteredTasks, updatedTasks, onUpdateTasks }) {
+  const tasksArray = currentFilteredTasks.map(task => {
+    return <Task updatedTasks={updatedTasks} onUpdateTasks={onUpdateTasks} key={task.text} text={task.text} category={task.category} />
+  })
+
   return (
     <div className="tasks">
-      {/* display a list of tasks using Task component */}
+      {tasksArray}
     </div>
   );
 }

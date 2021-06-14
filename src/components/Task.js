@@ -1,11 +1,17 @@
 import React from "react";
 
-function Task() {
+function Task({ text, category, updatedTasks, onUpdateTasks }) {
+  const handleDelete = event => {
+    const newUpdatedTasks = updatedTasks.filter(task => task.text !== event.target.previousSibling.textContent);
+    
+    onUpdateTasks(newUpdatedTasks);
+  }
+
   return (
     <div className="task">
-      <div className="label">CATEGORY HERE</div>
-      <div className="text">TEXT HERE</div>
-      <button className="delete">X</button>
+      <div className="label">{category}</div>
+      <div className="text">{text}</div>
+      <button onClick={handleDelete} className="delete">X</button>
     </div>
   );
 }
